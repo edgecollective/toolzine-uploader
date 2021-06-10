@@ -17,10 +17,25 @@
 <br>
 
 <button id="crop_button">Crop</button> 
+<br>
+<button id="grid_button">Grid</button> 
 
+<!--
+<img id="scream" src="img_the_scream.jpg" alt="The Scream" width="220" height="277">
+
+<canvas id="myCanvas" width="220" height="277" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+-->
+<br>
+
+<canvas id="zine_result" width="220" height="277" style="border:1px solid #d3d3d3;">
+  Your browser does not support the HTML5 canvas tag.</canvas>
+
+<!--
 <div class="puzzle piece1"></div>
 <div class="puzzle piece2"></div>
 <div class="puzzle piece3"></div>
+-->
 
 <script type="text/javascript" defer>
     function readURL(input) {
@@ -35,8 +50,9 @@
     }
     function initCropper(){
         var image = document.getElementById('blah');
+
         var cropper = new Cropper(image, {
-          aspectRatio: 0.773,
+          aspectRatio: 1 / 0.773,
           crop: function(e) {
             console.log(e.detail.x);
             console.log(e.detail.y);
@@ -45,11 +61,12 @@
 
         // On crop button clicked
         document.getElementById('crop_button').addEventListener('click', function(){
-            var imgurl =  cropper.getCroppedCanvas().toDataURL();
-            var img = document.createElement("img");
-            img.src = imgurl;
-            document.getElementById("cropped_result").appendChild(img);
-
+        var imgurl =  cropper.getCroppedCanvas().toDataURL();
+        var img = document.createElement("img");
+        img.src = imgurl;
+        img.id = "bob";
+        document.getElementById("cropped_result").appendChild(img);
+        
             /* ---------------- SEND IMAGE TO THE SERVER-------------------------
 
                 cropper.getCroppedCanvas().toBlob(function (blob) {
@@ -73,6 +90,39 @@
         })
     }
 </script>
+
+<script>
+
+  document.getElementById('grid_button').addEventListener('click', function(){
+  var c = document.getElementById("zine_result");
+  var ctx = c.getContext("2d");
+  var img2 = document.getElementById("bob");
+  ctx.drawImage(img2, 0, 0);
+  console.log('yeah');
+  });
+
+</script>
+
+<!--
+<script>
+  document.getElementById("scream").onload = function() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("scream");
+    ctx.drawImage(img, 0, 0);
+    var imgData = ctx.getImageData(0, 0, c.width, c.height);
+    // invert colors
+    var i;
+    for (i = 0; i < imgData.data.length; i += 4) {
+      imgData.data[i] = 255 - imgData.data[i];
+      imgData.data[i+1] = 255 - imgData.data[i+1];
+      imgData.data[i+2] = 255 - imgData.data[i+2];
+      imgData.data[i+3] = 255;
+    }
+    ctx.putImageData(imgData, 0, 0);
+  };
+  </script>
+-->
 
 </body>
 </html>
