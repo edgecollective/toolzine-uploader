@@ -6,10 +6,20 @@
 </head>
 
 <body>
-<h2>FarmHack ToolZine Uploader</h2>
+<h1>FarmHack ToolZine Uploader</h1>
+
+<p>
+If you make a 'tool zine' using 8.5x11'' paper using the below format, you can then upload a photo of your zine to this site, and process it into an HTML-based tutorial!
+</p>
+
 <img src="assets/folding.png" width=400px">
+&nbsp &nbsp
+&nbsp
+&nbsp
+
 <img src="assets/template.jpg" width=533px"><br><br>
 
+<h1>1. Upload a photo of your zine (landscape-oriented):</h1>
 <input type="file" name="image" id="image" onchange="readURL(this);"/>
 <!-- <h2>Uploaded Photo of Your Zine Page:</h2> -->
 <div class="image_container" id="cropped_result">
@@ -19,16 +29,15 @@
    <!-- <h2>Processed Zine:</h2>-->
 </div>
 
-<br>
-<br>
+<h1>2. Crop it:</h1>
 <button id="crop_button">Crop</button> 
 <br>
 <br>
 <div class="image_container" id="croppy">
 </div>
 
-<br>
-  <br>
+<h1>3. Split it up:</h1>
+
 <button id="grid_button">Split</button> 
 
 <br>
@@ -40,7 +49,8 @@
   Your browser does not support the HTML5 canvas tag.</canvas>-->
   
 
-  <br>
+ <h1>4. Result:</h1>
+
   <div style="font-size:x-large">
 <p id="title" >ToolZine ID#:</p>
 <img id="seven" src="#" ><br><br>
