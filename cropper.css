@@ -8,6 +8,10 @@
  * Date: 2021-02-17T11:53:21.992Z
  */
 
+body {
+  color: blue;
+}
+
 .cropper-container {
   direction: ltr;
   font-size: 0;
@@ -320,3 +324,38 @@
 .piece3 {
   background-position:-200px -100px
 }
+
+.rotateimg180 {
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.displaying {
+  font-size: large;
+  color: blue;
+  max-width:80%;
+}
+
+.toolsteps {
+  font-size: x-large;
+  color: black;
+  text-indent: 50px;
+  padding: 20px;
+}
+
+h1 {
+  color: green;
+}
+
+h2 {
+  color: green;
+}
+
+body {
+  font-family:sans-serif;
+  width:80%;
+}
+
