@@ -51,6 +51,7 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 
  <h1>4. Result:</h1>
 
+ <!--
   <div class="toolsteps">
 <span id="title">ToolZine ID#:</span><br><br>
 Title: <br><img id="seven" src="#" ><br><br><br>
@@ -61,6 +62,11 @@ Step 4: <br><img id="zero" src="#" ><br><br><br>
 Step 5: <br><img id="four" src="#" ><br><br><br>
 Step 6: <br><img id="five" src="#" ><br><br><br>
 More info: <br><img id="six" src="#" ><br><br><br>
+</div>
+-->
+
+<div id="bobble">
+
 </div>
 
 
@@ -224,6 +230,19 @@ More info: <br><img id="six" src="#" ><br><br><br>
     // imagePieces now contains data urls of all the pieces of the image
 
     // load one piece onto the page
+
+    var pages = [7,3,2,1,0,4,5,6]
+
+    pages.forEach(page => 
+    {
+      console.log(page);
+      var image = document.createElement('img');
+      image.src = imagePieces[page];
+      document.getElementById("bobble").appendChild(image);
+      //document.getElementById("bobble").appendChild(<br>);
+    });
+   
+/*
     var anImageElement = document.getElementById('zero');
     anImageElement.src = imagePieces[0];
     //anImageElement.width=200;
@@ -249,11 +268,12 @@ More info: <br><img id="six" src="#" ><br><br><br>
     var anImageElement = document.getElementById('seven');
     anImageElement.src = imagePieces[7];
 
+*/
     var title = document.getElementById("title") ;
 
     const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
-    title.innerHTML="ToolZine ID#: ".concat(genRanHex(8));
+    //title.innerHTML="ToolZine ID#: ".concat(genRanHex(8));
 
 
 
