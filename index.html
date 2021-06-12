@@ -19,7 +19,10 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 
 <img src="assets/template.jpg" height="500px"><br><br>
 
-<h1>1. Upload a photo of your zine (landscape-oriented)</h1>
+<h1>1. Upload</h1>
+<p class="displaying">
+  Upload a photo of your zine (landscape-oriented).
+  </p>
 <input type="file" name="image" id="image" onchange="readURL(this);"/>
 <!-- <h2>Uploaded Photo of Your Zine Page:</h2> -->
 <div class="image_container" id="cropped_result">
@@ -29,51 +32,43 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
    <!-- <h2>Processed Zine:</h2>-->
 </div>
 
-<h1>2. Crop it</h1>
+<h1>2. Crop</h1>
+<p class="displaying">
+  Crop the uploaded photo to the original paper size.
+  </p>
 <button id="crop_button">Crop</button> 
 <br>
 <br>
 <div class="image_container" id="croppy">
 </div>
 
-<h1>3. Split it up</h1>
-
-<button id="grid_button">Split</button> 
+<h1>3. Add notes</h1>
+<p class="displaying">
+  Annotate your zine!
+  </p>
+<button id="grid_button">Annotate</button> 
 
 <br>
 <br>
-
-<!--
-<canvas id="zine_result" width="220" height="277" style="border:1px solid #d3d3d3;">
-
-  Your browser does not support the HTML5 canvas tag.</canvas>-->
   
   <div id="bobble">
 
   </div>
-  
- <!--
-  <div class="toolsteps">
-<span id="title">ToolZine ID#:</span><br><br>
-Title: <br><img id="seven" src="#" ><br><br><br>
-Step 1: <br><img id="three" src="#" ><br><br><br>
-Step 2: <br><img id="two" src="#" ><br><br><br>
-Step 3: <br><img id="one" src="#" ><br><br><br>
-Step 4: <br><img id="zero" src="#" ><br><br><br>
-Step 5: <br><img id="four" src="#" ><br><br><br>
-Step 6: <br><img id="five" src="#" ><br><br><br>
-More info: <br><img id="six" src="#" ><br><br><br>
-</div>
--->
 
+  <h1>4. Save & Share</h1>
+  <p>Click 'save' to save your notes and generate an online version of your zine!</p>
+  <button id="save_button">Annotate</button> 
+  <div id="sharing">
 
+  </div>
 
+<span class="displaying">
+  Your toolzine is now available at: 
+</span>
+  <span class = "share" id="link">
+    <a href="">farmhackuk.org/toolzines/x2g23sd</a>
+  </span>
 
-<!--
-<div class="puzzle piece1"></div>
-<div class="puzzle piece2"></div>
-<div class="puzzle piece3"></div>
--->
 <script>
   function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -245,9 +240,23 @@ var clickNum=0;
       image.src = imagePieces[page];
       //image.style.margin-right = "50px";
       image.draggable="true";
+
+      var c = document.getElementById("croptop");
+      var numColsToCut = 4;
+      var numRowsToCut = 2;
+      var widthOfOnePiece = c.width/numColsToCut;
+      var heightOfOnePiece = c.height/numRowsToCut;
+
+      var txt = document.createElement('textarea');
+      txt.rows="12";
+
+      console.log("heightOfOnePiece:",heightOfOnePiece);
+      
+      console.log("txt.height:",txt.height);
       var parent = document.getElementById("bobble");
       parent.appendChild(image);
-
+      parent.appendChild( document.createTextNode( '\u00A0\u00A0' ) );
+      parent.appendChild(txt);
       parent.appendChild(document.createElement("br"));
       parent.appendChild(document.createElement("br"));
 
@@ -255,36 +264,7 @@ var clickNum=0;
     });
     }
    
-/*
-    var anImageElement = document.getElementById('zero');
-    anImageElement.src = imagePieces[0];
-    //anImageElement.width=200;
-
-    var anImageElement = document.getElementById('one');
-    anImageElement.src = imagePieces[1];
-    
-    var anImageElement = document.getElementById('two');
-    anImageElement.src = imagePieces[2];
-
-    var anImageElement = document.getElementById('three');
-    anImageElement.src = imagePieces[3];
-
-    var anImageElement = document.getElementById('four');
-    anImageElement.src = imagePieces[4];
-
-    var anImageElement = document.getElementById('five');
-    anImageElement.src = imagePieces[5];
-
-    var anImageElement = document.getElementById('six');
-    anImageElement.src = imagePieces[6];
-
-    var anImageElement = document.getElementById('seven');
-    anImageElement.src = imagePieces[7];
-
-*/
     var title = document.getElementById("title") ;
-
-    const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
     //title.innerHTML="ToolZine ID#: ".concat(genRanHex(8));
 
@@ -293,28 +273,27 @@ var clickNum=0;
 
   });
 
+  document.getElementById('save_button').addEventListener('click', function(){
+    console.log("saved!");
+    var shareinfo = document.createElement('span');
+
+    const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+    var parent = document.getElementById("sharing");
+
+    var inside = "Your toolzine is now available at: ";
+    inside.concat("<a href=\"");
+    inside.concat("(link)\"");
+    inside.concat(">");
+    inside.concat(genRanHex(8));
+    inside.concat("</a>");
+    shareinfo.innerHTML=inside;
+    parent.appendChild(shareinfo);
+
+  });
+
 </script>
 
-<!--
-<script>
-  document.getElementById("scream").onload = function() {
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    var img = document.getElementById("scream");
-    ctx.drawImage(img, 0, 0);
-    var imgData = ctx.getImageData(0, 0, c.width, c.height);
-    // invert colors
-    var i;
-    for (i = 0; i < imgData.data.length; i += 4) {
-      imgData.data[i] = 255 - imgData.data[i];
-      imgData.data[i+1] = 255 - imgData.data[i+1];
-      imgData.data[i+2] = 255 - imgData.data[i+2];
-      imgData.data[i+3] = 255;
-    }
-    ctx.putImageData(imgData, 0, 0);
-  };
-  </script>
--->
 
 </body>
 </html>

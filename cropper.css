@@ -337,6 +337,12 @@
   max-width:60%;
 }
 
+.share {
+  font-size: x-large;
+  color: red;
+  max-width:60%;
+}
+
 .toolsteps {
   font-size: x-large;
   color: black;
@@ -358,4 +364,6 @@ body {
     background-color: lightblue;
   color:black;
 }
+
+textarea { width: 500px; }
 
