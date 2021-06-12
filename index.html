@@ -6,37 +6,37 @@
 </head>
 
 <body>
-<h1>FarmHack ToolZine Uploader!</h1>
+<h1>FarmHack ToolZine Uploader</h1>
 
 <p class="displaying">
 If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the format shown below), you can upload a photo of your zine to this site, and process it into an web-based tutorial!
 </p>
 
-<img src="assets/folding.png" width=500px">
+<img src="assets/folding.png" height="500px">
 &nbsp &nbsp
 &nbsp
 &nbsp
 
-<img src="assets/template.jpg" width=700px"><br><br>
+<img src="assets/template.jpg" height="500px"><br><br>
 
-<h1>1. Upload a photo of your zine (landscape-oriented):</h1>
+<h1>1. Upload a photo of your zine (landscape-oriented)</h1>
 <input type="file" name="image" id="image" onchange="readURL(this);"/>
 <!-- <h2>Uploaded Photo of Your Zine Page:</h2> -->
 <div class="image_container" id="cropped_result">
     <!--<img id="blah" src="#" alt="your uploaded image" /> -->
     <br>
-    Uploaded image: <img id="blah" src="#" />
+    <img id="blah" src="#" />
    <!-- <h2>Processed Zine:</h2>-->
 </div>
 
-<h1>2. Crop it:</h1>
+<h1>2. Crop it</h1>
 <button id="crop_button">Crop</button> 
 <br>
 <br>
 <div class="image_container" id="croppy">
 </div>
 
-<h1>3. Split it up:</h1>
+<h1>3. Split it up</h1>
 
 <button id="grid_button">Split</button> 
 
@@ -48,9 +48,10 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 
   Your browser does not support the HTML5 canvas tag.</canvas>-->
   
+  <div id="bobble">
 
- <h1>4. Result:</h1>
-
+  </div>
+  
  <!--
   <div class="toolsteps">
 <span id="title">ToolZine ID#:</span><br><br>
@@ -65,9 +66,7 @@ More info: <br><img id="six" src="#" ><br><br><br>
 </div>
 -->
 
-<div id="bobble">
 
-</div>
 
 
 <!--
@@ -98,7 +97,8 @@ More info: <br><img id="six" src="#" ><br><br><br>
         var image = document.getElementById('blah');
 
         var cropper = new Cropper(image, {
-          aspectRatio: 1 / 0.773,
+          aspectRatio: 1.294, // US 8.5 x 11 in landscape mode
+          //aspectRatio: 1.41, // UK 8.3 x 11.7 in landscape mode
           crop: function(e) {
             console.log(e.detail.x);
             console.log(e.detail.y);
@@ -163,7 +163,11 @@ More info: <br><img id="six" src="#" ><br><br><br>
 
 <script>
 
+var clickNum=0;
+
   document.getElementById('grid_button').addEventListener('click', function(){
+    clickNum++;
+    console.log("clicknum:",clickNum);
     var c = document.getElementById("croptop");
     var ctx = c.getContext("2d");
     //var img = document.getElementById("scream");
@@ -233,14 +237,23 @@ More info: <br><img id="six" src="#" ><br><br><br>
 
     var pages = [7,3,2,1,0,4,5,6]
 
+    if(clickNum>1) {
     pages.forEach(page => 
     {
       console.log(page);
       var image = document.createElement('img');
       image.src = imagePieces[page];
-      document.getElementById("bobble").appendChild(image);
-      //document.getElementById("bobble").appendChild(<br>);
+      //image.style.margin-right = "50px";
+      image.draggable="true";
+      var parent = document.getElementById("bobble");
+      parent.appendChild(image);
+
+      parent.appendChild(document.createElement("br"));
+      parent.appendChild(document.createElement("br"));
+
+
     });
+    }
    
 /*
     var anImageElement = document.getElementById('zero');

@@ -8,9 +8,7 @@
  * Date: 2021-02-17T11:53:21.992Z
  */
 
-body {
-  color: blue;
-}
+
 
 .cropper-container {
   direction: ltr;
@@ -335,8 +333,8 @@ body {
 
 .displaying {
   font-size: large;
-  color: blue;
-  max-width:80%;
+  color: black;
+  max-width:60%;
 }
 
 .toolsteps {
@@ -357,5 +355,7 @@ h2 {
 body {
   font-family:sans-serif;
   width:80%;
+    background-color: lightblue;
+  color:black;
 }
 
