@@ -116,6 +116,7 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
         var cropper = new Cropper(image, {
           aspectRatio: 1.294, // US 8.5 x 11 in landscape mode
           //aspectRatio: 1.41, // UK 8.3 x 11.7 in landscape mode
+          rotatable:true,
           crop: function(e) {
             console.log(e.detail.x);
             console.log(e.detail.y);
@@ -252,7 +253,7 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data
             var canvas = document.createElement('canvas');
             canvas.width = widthOfOnePiece;
             canvas.height = heightOfOnePiece;
-            if (index!=6) {
+            if (index!=16) {
             var context = canvas.getContext('2d');
             if (index < 4) {
               context.translate(canvas.width, canvas.height);

@@ -16,3 +16,5 @@ also maybe need this library [https://github.com/niklasvh/html2canvas](https://g
 
 add image via jsPDF [https://stackoverflow.com/questions/19065562/add-image-in-pdf-using-jspdf](https://stackoverflow.com/questions/19065562/add-image-in-pdf-using-jspdf)
 
+rotating in cropperjs [https://stackoverflow.com/questions/45019008/rotation-using-cropper-js](https://stackoverflow.com/questions/45019008/rotation-using-cropper-js)
+
