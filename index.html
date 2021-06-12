@@ -4,7 +4,8 @@
     <link  href="./cropper.css" rel="stylesheet"> 
     <script src="./cropper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-    <script> scr="./html2canvas.min.js" </script>
+    <!--<script> src="./html2canvas.min.js" </script>-->
+    <script src ="./qrcode.min.js"></script>
 
 </head>
 
@@ -72,6 +73,20 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
     <a href="">farmhackuk.org/toolzines/x2g23sd</a>
   </span>
 
+<p>
+  <b>QR Code</b> with link to this feed (download: <a href="#" download="qrcode.png" id="downloadlink">qrcode_feed_tf5r8svegz6z.png</a>)
+</p>
+
+  <canvas id="qrcode"></canvas>
+
+    
+
+    <script>const canvas = document.getElementById("qrcode");
+    const canvasdata = canvas.toDataURL();
+    const link = document.getElementById("downloadlink");
+    link.href = canvasdata;
+    link.download = "feed_tf5r8svegz6z.png";
+    </script>
 
 
 <script>
@@ -206,6 +221,13 @@ var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
 doc.addImage(image, 'JPEG', 0, 0,11,8.5);
 doc.save("new.pdf");
 
+
+QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data/tf5r8svegz6z', function (error) {
+    if (error) console.error(error)
+    console.log('success!');
+    })
+
+
     //document.getElementById("cropped_result").appendChild(image);
 
     // split into pieces
@@ -222,6 +244,7 @@ doc.save("new.pdf");
             var canvas = document.createElement('canvas');
             canvas.width = widthOfOnePiece;
             canvas.height = heightOfOnePiece;
+            if (index!=6) {
             var context = canvas.getContext('2d');
             if (index < 4) {
               context.translate(canvas.width, canvas.height);
@@ -234,7 +257,19 @@ doc.save("new.pdf");
             context.drawImage(image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height);
             }
 
+            
             imagePieces.push(canvas.toDataURL());
+            
+            
+            }
+            else {
+              QRCode.toCanvas(canvas, 'http://belfast.pvos.org/data/tf5r8svegz6z', function (error) {
+              if (error) console.error(error)
+              console.log('success!');
+              imagePieces.push(canvas.toDataURL());
+              });
+            }
+
             index=index+1;
             //console.log(uuidv4());
             
