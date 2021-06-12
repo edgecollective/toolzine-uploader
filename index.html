@@ -3,12 +3,15 @@
   <script src="./jquery.min.js"></script> 
     <link  href="./cropper.css" rel="stylesheet"> 
     <script src="./cropper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script> scr="./html2canvas.min.js" </script>
+
 </head>
 
 <body>
 <h1>FarmHack ToolZine Uploader</h1>
 
-<p class="displaying">
+<p class="displaying" id="pdftest">
 If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the format shown below), you can upload a photo of your zine to this site, and process it into an web-based tutorial!
 </p>
 
@@ -68,6 +71,8 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
   <span class = "share" id="link">
     <a href="">farmhackuk.org/toolzines/x2g23sd</a>
   </span>
+
+
 
 <script>
   function uuidv4() {
@@ -169,7 +174,7 @@ var clickNum=0;
     //ctx.drawImage(img, 0, 0);
     var imgData = ctx.getImageData(0, 0, c.width, c.height);
 
-
+    
     // invert colors
     /*
     var i;
@@ -189,6 +194,18 @@ var clickNum=0;
     var dataUrl = c.toDataURL();
     var image = document.createElement('img');
     image.src = dataUrl;
+    //var pix_per_mm = 3.7795;
+    //var a4_height_mm = 297;
+    //var a4_width_mm = 210;
+    //image.style.width="200px";
+
+
+//var doc = new jsPDF('l', 'mm', 'a4');  // optional parameters
+//doc.addImage(image, 'JPEG', 0, 0,297,210);
+var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
+doc.addImage(image, 'JPEG', 0, 0,11,8.5);
+doc.save("new.pdf");
+
     //document.getElementById("cropped_result").appendChild(image);
 
     // split into pieces

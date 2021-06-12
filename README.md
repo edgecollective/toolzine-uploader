@@ -10,4 +10,9 @@ Code for creating grid: [https://stackoverflow.com/questions/27065230/how-to-spl
 
 using promises: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 
+client-side pdf generator [https://github.com/MrRio/jsPDF](https://github.com/MrRio/jsPDF)
+
+also maybe need this library [https://github.com/niklasvh/html2canvas](https://github.com/niklasvh/html2canvas)
+
+add image via jsPDF [https://stackoverflow.com/questions/19065562/add-image-in-pdf-using-jspdf](https://stackoverflow.com/questions/19065562/add-image-in-pdf-using-jspdf)
 
