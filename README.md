@@ -18,3 +18,10 @@ add image via jsPDF [https://stackoverflow.com/questions/19065562/add-image-in-p
 
 rotating in cropperjs [https://stackoverflow.com/questions/45019008/rotation-using-cropper-js](https://stackoverflow.com/questions/45019008/rotation-using-cropper-js)
 
+---
+2021-06-12 20:02:07
+
+latest idea:  
+- ability to rotate image
+- when hit 'save', you get a link you can write down on your paper zine -- now it's documented online, with additional material / links
+- private key for editing it, if you wish 
