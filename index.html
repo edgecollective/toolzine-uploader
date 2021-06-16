@@ -373,8 +373,9 @@ var clickNum=0;
     var rando = genRanHex(8);
     var parent = document.getElementById("sharing");
 
-    var inside = "<br>New zine entry created!  <br><br> Your toolzine will be available at: <br><br>";
-    inside=inside.concat("<a href=\"");
+    var inside = "<br>New zine entry created: <b>";
+    inside=inside.concat(rando);
+    inside=inside.concat("</b><br><br> Your toolzine will be available at: <a href=\"");
     inside=inside.concat("(link)\"");
     inside=inside.concat(">");
     inside=inside.concat("farmhack.org/toolzines/");
@@ -383,7 +384,7 @@ var clickNum=0;
 
 
     inside=inside.concat("<p>");
-    inside=inside.concat("Now write the above URL down on your zine back page, then take a photo of it in 'landscape mode'.");
+    inside=inside.concat("Now write the above URL down on your zine back page, and then take a photo of it in 'landscape mode'.");
     inside=inside.concat("</p>");
 
     shareinfo.innerHTML=inside;
