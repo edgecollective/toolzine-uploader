@@ -27,7 +27,7 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 &nbsp
 <img src="assets/folding.png" height="500px"><br><br>
 
-<h1>1. Create New Zine ID</h1>
+<h1>1. Generate New Zine ID #</h1>
 
   <button id="save_button">New Zine ID</button> 
   <div class = "displaying" id="sharing">
@@ -37,6 +37,7 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
     
 
 <h1>2. Upload Photo of your Zine</h1>
+<div id="uploading"></div>
 
 <input type="file" name="image" id="image" onchange="readURL(this);"/>
 <!-- <h2>Uploaded Photo of Your Zine Page:</h2> -->
@@ -83,7 +84,7 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
     link.download = "feed_tf5r8svegz6z.png";
     </script>
   -->
-  
+
 
 <script>
   function uuidv4() {
@@ -271,10 +272,12 @@ var clickNum=0;
             }
             else {
             context.drawImage(image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height);
-            if (index==6) {
+            
+            /*if (index==6) {
             context.font = "30px Arial";
             context.fillText("Hello World", 10, 50);
             }
+            */
             }
 
             
@@ -374,22 +377,35 @@ var clickNum=0;
     var rando = genRanHex(8);
     var parent = document.getElementById("sharing");
 
-    var inside = "<br>New zine entry created: <b>";
+    var inside = "<br>New zine entry created with id =  <b>";
+    inside=inside.concat("<span class=\"zine_id\">");
     inside=inside.concat(rando);
-    inside=inside.concat("</b><br><br> Your toolzine will be available at: <a href=\"");
+    inside=inside.concat("</span>");
+    inside=inside.concat("</b><br><br>Your toolzine will be available at: <a href=\"");
     inside=inside.concat("(link)\"");
     inside=inside.concat(">");
-    inside=inside.concat("farmhack.org/toolzines/");
+    inside=inside.concat("http://farmhack.org/toolzines/");
     inside=inside.concat(rando);
     inside=inside.concat("</a>");
 
 
+    
+
+    /*
     inside=inside.concat("<p>");
-    inside=inside.concat("Now write the above URL down on your zine back page, and then take a photo of it in 'landscape mode'.");
+    inside=inside.concat("Write the above URL down on your zine back page!");
     inside=inside.concat("</p>");
+    */
 
     shareinfo.innerHTML=inside;
     parent.appendChild(shareinfo);
+
+    var shareinfo = document.createElement('span');
+    var parent = document.getElementById("uploading");
+    var inside = "<p> Now write the above-generated zine ID down on your zine's back page, take a photo, and upload!</p>";
+    shareinfo.innerHTML=inside;
+    parent.appendChild(shareinfo);
+
     console.log("yelllll");
 
   });
