@@ -23,5 +23,6 @@ rotating in cropperjs [https://stackoverflow.com/questions/45019008/rotation-usi
 
 latest idea:  
 - ability to rotate image
-- when hit 'save', you get a link you can write down on your paper zine -- now it's documented online, with additional material / links
+- when you initiate, a pubkey is generated 
+- when you hit 'save', you can then write down pubkey if you wish-- now it's documented online, with additional material / links
 - private key for editing it, if you wish 

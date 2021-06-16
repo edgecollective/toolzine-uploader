@@ -7,6 +7,10 @@
     <!--<script> src="./html2canvas.min.js" </script>-->
     <script src ="./qrcode.min.js"></script>
 
+    <script>
+      var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
+
+    </script>
 </head>
 
 <body>
@@ -16,12 +20,12 @@
 If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the format shown below), you can upload a photo of your zine to this site, and process it into an web-based tutorial!
 </p>
 
-<img src="assets/folding.png" height="500px">
+
+<img src="assets/template_a.png" height="500px">
 &nbsp &nbsp
 &nbsp
 &nbsp
-
-<img src="assets/template.jpg" height="500px"><br><br>
+<img src="assets/folding.png" height="500px"><br><br>
 
 <h1>1. Upload</h1>
 <p class="displaying">
@@ -224,11 +228,7 @@ var clickNum=0;
     //image.style.width="200px";
 
 
-//var doc = new jsPDF('l', 'mm', 'a4');  // optional parameters
-//doc.addImage(image, 'JPEG', 0, 0,297,210);
-var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
-doc.addImage(image, 'JPEG', 0, 0,11,8.5);
-doc.save("new.pdf");
+
 
 
 QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data/tf5r8svegz6z', function (error) {
@@ -336,6 +336,12 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data
   });
 
   document.getElementById('save_button').addEventListener('click', function(){
+
+    //var doc = new jsPDF('l', 'mm', 'a4');  // optional parameters
+//doc.addImage(image, 'JPEG', 0, 0,297,210);
+    doc.addImage(image, 'JPEG', 0, 0,11,8.5);
+    doc.save("new.pdf");
+
     console.log("saved!");
     var shareinfo = document.createElement('span');
 
