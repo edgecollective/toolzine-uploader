@@ -27,10 +27,17 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 &nbsp
 <img src="assets/folding.png" height="500px"><br><br>
 
-<h1>1. Upload</h1>
-<p class="displaying">
-  Upload a photo of your zine (landscape-oriented).
-  </p>
+<h1>1. Create New Zine ID</h1>
+
+  <button id="save_button">New Zine ID</button> 
+  <div class = "displaying" id="sharing">
+
+  </div>
+
+    
+
+<h1>2. Upload Photo of your Zine</h1>
+
 <input type="file" name="image" id="image" onchange="readURL(this);"/>
 <!-- <h2>Uploaded Photo of Your Zine Page:</h2> -->
 <div class="image_container" id="cropped_result">
@@ -40,20 +47,15 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
    <!-- <h2>Processed Zine:</h2>-->
 </div>
 
-<h1>2. Crop</h1>
-<p class="displaying">
-  Crop the uploaded photo to the original paper size.
-  </p>
+<h1>3. Crop</h1>
+
 <button id="crop_button">Crop</button> 
 <br>
 <br>
 <div class="image_container" id="croppy">
 </div>
 
-<h1>3. Add notes</h1>
-<p class="displaying">
-  Annotate your zine!
-  </p>
+<h1>4. Add notes</h1>
 <button id="grid_button">Annotate</button> 
 
 <br>
@@ -63,26 +65,15 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 
   </div>
 
-  <h1>4. Save & Share</h1>
-  <p>Click 'save' to save your notes and generate an online version of your zine!</p>
-  <button id="save_button">Annotate</button> 
-  <div id="sharing">
+  
 
-  </div>
-
-<span class="displaying">
-  Your toolzine is now available at: 
-</span>
-  <span class = "share" id="link">
-    <a href="">farmhackuk.org/toolzines/x2g23sd</a>
-  </span>
-
+<!--
 <p>
   <b>QR Code</b> with link to this feed (download: <a href="#" download="qrcode.png" id="downloadlink">qrcode_feed_tf5r8svegz6z.png</a>)
 </p>
 
   <canvas id="qrcode"></canvas>
-
+-->
     
 
     <script>const canvas = document.getElementById("qrcode");
@@ -245,12 +236,12 @@ var clickNum=0;
     //image.style.width="200px";
 
 
-
-QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data/tf5r8svegz6z', function (error) {
+/*
+    QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data/tf5r8svegz6z', function (error) {
     if (error) console.error(error)
     console.log('success!');
     })
-
+*/
 
     //document.getElementById("cropped_result").appendChild(image);
 
@@ -356,6 +347,7 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data
 
   document.getElementById('save_button').addEventListener('click', function(){
 
+/*
     var c = document.getElementById("croptop");
 
     var myctx = c.getContext("2d");
@@ -373,20 +365,30 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data
     doc.save("new.pdf");
 
     console.log("saved!");
+    */
     var shareinfo = document.createElement('span');
 
     const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
+    var rando = genRanHex(8);
     var parent = document.getElementById("sharing");
 
-    var inside = "Your toolzine is now available at: ";
-    inside.concat("<a href=\"");
-    inside.concat("(link)\"");
-    inside.concat(">");
-    inside.concat(genRanHex(8));
-    inside.concat("</a>");
+    var inside = "<br>New zine entry created!  <br><br> Your toolzine will be available at: <br><br>";
+    inside=inside.concat("<a href=\"");
+    inside=inside.concat("(link)\"");
+    inside=inside.concat(">");
+    inside=inside.concat("farmhack.org/toolzines/");
+    inside=inside.concat(rando);
+    inside=inside.concat("</a>");
+
+
+    inside=inside.concat("<p>");
+    inside=inside.concat("Now write the above URL down on your zine back page, then take a photo of it in 'landscape mode'.");
+    inside=inside.concat("</p>");
+
     shareinfo.innerHTML=inside;
     parent.appendChild(shareinfo);
+    console.log("yelllll");
 
   });
 
