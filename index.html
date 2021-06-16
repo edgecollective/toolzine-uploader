@@ -137,6 +137,16 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
           var cropped_width = croppedCanvas.width;
           var cropped_height = croppedCanvas.height;
 
+           // split into pieces
+          var numColsToCut = 4;
+          var numRowsToCut = 2;
+          var widthOfOnePiece = croppedCanvas.width/numColsToCut;
+          var heightOfOnePiece = croppedCanvas.height/numRowsToCut;
+
+          
+
+
+
           /*
           var imgurl =  croppedCanvas.toDataURL();
           var img = document.createElement("img");
@@ -162,7 +172,8 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
           */
 
           document.getElementById("croppy").appendChild(croppedCanvas);
-
+          
+         
           //document.getElementById("cropped_result").appendChild(img);
         
             /* ---------------- SEND IMAGE TO THE SERVER-------------------------
@@ -198,6 +209,12 @@ var clickNum=0;
     console.log("clicknum:",clickNum);
     var c = document.getElementById("croptop");
     var ctx = c.getContext("2d");
+
+      ctx.font = "30px Arial";
+      //ctx.fillText("UUID", 2*widthOfOnePiece, heightOfOnePiece);
+      ctx.fillText("UUID", 10, 10);
+      
+
     //var img = document.getElementById("scream");
     //ctx.drawImage(img, 0, 0);
     var imgData = ctx.getImageData(0, 0, c.width, c.height);
@@ -226,8 +243,6 @@ var clickNum=0;
     //var a4_height_mm = 297;
     //var a4_width_mm = 210;
     //image.style.width="200px";
-
-
 
 
 
@@ -264,6 +279,10 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data
             }
             else {
             context.drawImage(image, x * widthOfOnePiece, y * heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height);
+            if (index==6) {
+            context.font = "30px Arial";
+            context.fillText("Hello World", 10, 50);
+            }
             }
 
             
@@ -337,7 +356,18 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'http://belfast.pvos.org/data
 
   document.getElementById('save_button').addEventListener('click', function(){
 
-    //var doc = new jsPDF('l', 'mm', 'a4');  // optional parameters
+    var c = document.getElementById("croptop");
+
+    var myctx = c.getContext("2d");
+    myctx.font = "30px Arial";
+    myctx.fillText("Yes!!", 100, 100);
+
+    var imgurl =  c.toDataURL();
+    var image = document.createElement("img");
+    image.src = imgurl;
+    var doc = new jsPDF('l', 'mm', 'a4');  
+    var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
+// optional parameters
 //doc.addImage(image, 'JPEG', 0, 0,297,210);
     doc.addImage(image, 'JPEG', 0, 0,11,8.5);
     doc.save("new.pdf");
