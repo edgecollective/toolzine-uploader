@@ -9,7 +9,7 @@
 
     <script>
       var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
-
+      var rando;
     </script>
 </head>
 
@@ -52,7 +52,6 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 
 <button id="crop_button">Crop</button> 
 <br>
-<br>
 <div class="image_container" id="croppy">
 </div>
 
@@ -61,11 +60,15 @@ If you've already made a paper-based 'tool zine' using 8.5x11'' paper (using the
 
 <br>
 <br>
-  
   <div id="bobble">
 
   </div>
 
+  <h1>5. Save and share</h1>
+  <button id="share">save</button> 
+  <div class = "displaying" id="spreading">
+
+  </div>
   
 
 <!--
@@ -324,7 +327,7 @@ var clickNum=0;
       var heightOfOnePiece = c.height/numRowsToCut;
 
       var txt = document.createElement('textarea');
-      txt.rows="12";
+      txt.rows="20";
 
       console.log("heightOfOnePiece:",heightOfOnePiece);
       
@@ -351,43 +354,19 @@ var clickNum=0;
 
   document.getElementById('save_button').addEventListener('click', function(){
 
-/*
-    var c = document.getElementById("croptop");
 
-    var myctx = c.getContext("2d");
-    myctx.font = "30px Arial";
-    myctx.fillText("Yes!!", 100, 100);
-
-    var imgurl =  c.toDataURL();
-    var image = document.createElement("img");
-    image.src = imgurl;
-    var doc = new jsPDF('l', 'mm', 'a4');  
-    var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
-// optional parameters
-//doc.addImage(image, 'JPEG', 0, 0,297,210);
-    doc.addImage(image, 'JPEG', 0, 0,11,8.5);
-    doc.save("new.pdf");
-
-    console.log("saved!");
-    */
     var shareinfo = document.createElement('span');
 
     const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
-    var rando = genRanHex(8);
+    rando = genRanHex(8);
     var parent = document.getElementById("sharing");
 
-    var inside = "<br>New zine entry created with id =  <b>";
-    inside=inside.concat("<span class=\"zine_id\">");
+    var inside = "<br>Toolzine ID: ";
+    inside=inside.concat("<span class=\"zine_id\"><b>");
     inside=inside.concat(rando);
-    inside=inside.concat("</span>");
-    inside=inside.concat("</b><br><br>Your toolzine will be available at: <a href=\"");
-    inside=inside.concat("(link)\"");
-    inside=inside.concat(">");
-    inside=inside.concat("http://farmhack.org/toolzines/");
-    inside=inside.concat(rando);
-    inside=inside.concat("</a>");
-
+    inside=inside.concat("</b></span>");
+    
 
     
 
@@ -400,15 +379,56 @@ var clickNum=0;
     shareinfo.innerHTML=inside;
     parent.appendChild(shareinfo);
 
+/*
     var shareinfo = document.createElement('span');
     var parent = document.getElementById("uploading");
     var inside = "<p> Now write the above-generated zine ID down on your zine's back page, take a photo, and upload!</p>";
     shareinfo.innerHTML=inside;
     parent.appendChild(shareinfo);
+    */
 
     console.log("yelllll");
 
   });
+
+  document.getElementById('share').addEventListener('click', function(){
+
+
+    var c = document.getElementById("croptop");
+
+    var imgurl =  c.toDataURL();
+    var image = document.createElement("img");
+    image.src = imgurl;
+    //var doc = new jsPDF('l', 'mm', 'a4');  
+    
+
+    console.log("saved!");
+    
+    var parent = document.getElementById("spreading");
+
+    var inside="</b><br><br>Toolzine URL: <a href=\"";
+    inside=inside.concat("(link)\"");
+    inside=inside.concat(">");
+
+    inside=inside.concat("http://farmhack.org/toolzines/");
+
+    inside=inside.concat(rando);
+    inside=inside.concat("</a>");
+    inside=inside.concat("<br><br> You can now write the above ID and/or URL on your zine somewhere!");
+
+    var shareinfo = document.createElement('span');
+    shareinfo.innerHTML=inside;
+    parent.appendChild(shareinfo);
+
+    var doc = new jsPDF('l', 'in', 'letter');  // optional parameters
+// optional parameters
+//doc.addImage(image, 'JPEG', 0, 0,297,210);
+    doc.addImage(image, 'JPEG', 0, 0,11,8.5);
+    doc.save(rando.concat(".pdf"));
+
+
+  });
+
 
 </script>
 
